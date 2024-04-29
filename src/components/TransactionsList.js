@@ -1,6 +1,19 @@
 import React from "react";
 
 function TransactionsList({ transactions }) {
+    // Define the delete function
+    function handleDelete(transId) {
+      fetch(`http://localhost:8001/transactions/${transId}`, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => { 
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+    }
   return (
     <table className="ui celled striped padded table">
       <tbody>
@@ -25,6 +38,10 @@ function TransactionsList({ transactions }) {
             <td>{trans.description}</td>
             <td>{trans.category}</td>
             <td>{trans.amount}</td>
+            <td>
+            {/* Pass the transaction id to the delete function */}
+            <button onClick={() => handleDelete(trans.id)}>Delete</button>
+          </td>
           </tr>
         ))}
       </tbody>

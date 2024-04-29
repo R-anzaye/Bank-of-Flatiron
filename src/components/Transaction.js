@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-function Transaction({ transactions }){
-//transactions is an array of Transaction objects that is placed as a prop from search 
+function Transaction({ transactions }) {
+
+
   return (
-    <React.Fragment>
+    <table>
       {/*Mapping is done here to get all transactions in the props */}
       {transactions.map((trans) => (
         <tr key={trans.id}>
@@ -19,13 +20,12 @@ function Transaction({ transactions }){
           <td>
             <h3>{trans.amount}</h3>
           </td>
+         
         </tr>
       ))}
-    </React.Fragment>
-  )
-
+    </table>
+  );
 }
 
-//export function
 export default Transaction;
 
